@@ -1,0 +1,18 @@
+version: "2"
+
+services:
+
+  webflix-db:
+    container_name: webflix-db
+    restart: always
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: "webflix-db"
+      MYSQL_DATABASE: "webflix-db"
+    ports:
+      - "3310:3306"
+    volumes:
+      - webflix-db:/var/lib/mysql
+
+volumes:
+  webflix-db:
