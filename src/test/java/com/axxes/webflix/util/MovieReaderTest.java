@@ -13,7 +13,7 @@ public class MovieReaderTest {
 
     @Test
     public void readMovies() {
-        List<Movie> movies = movieReader.readMovies();
+        List<Movie> movies = movieReader.readMovies("movies.txt");
 
         assertThat(movies).isNotEmpty();
         assertThat(movies).hasSize(10);

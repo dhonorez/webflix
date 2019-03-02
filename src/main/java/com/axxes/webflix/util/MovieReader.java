@@ -1,24 +1,25 @@
 package com.axxes.webflix.util;
 
 import com.axxes.webflix.domain.Movie;
+import org.springframework.util.ResourceUtils;
 
+import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
 import java.nio.file.Files;
-import java.nio.file.Paths;
 import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
 public class MovieReader {
 
-    public List<Movie> readMovies() {
+    public List<Movie> readMovies(String filename) {
         try {
-            return Files.readAllLines(Paths.get(this.getClass().getResource("/movies.txt").toURI()))
+            File file = ResourceUtils.getFile("classpath:" + filename);
+            return Files.readAllLines(file.toPath())
                     .stream()
                     .map(this::toMovie)
                     .collect(Collectors.toList());
-        } catch (IOException | URISyntaxException e) {
+        } catch (IOException e) {
             e.printStackTrace();
             return Collections.emptyList();
         }
