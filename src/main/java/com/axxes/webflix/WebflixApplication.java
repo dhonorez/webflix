@@ -15,6 +15,8 @@ import java.util.List;
 @SpringBootApplication
 public class WebflixApplication implements CommandLineRunner {
 
+    public static final String MOVIE_FILE = "movies.txt";
+
     @Autowired
     private MovieRepository movieRepository;
 
@@ -26,11 +28,20 @@ public class WebflixApplication implements CommandLineRunner {
 
     @Override
     public void run(String... strings) {
-        MovieReader movieReader = new MovieReader();
-        List<Movie> movies = movieReader.readMovies("movies.txt");
+        List<Movie> movies = readMoviesFromFile();
+        saveMoviesToRepo(movies);
+        printMovieList();
+    }
 
+    private List<Movie> readMoviesFromFile() {
+        return new MovieReader().readMovies(MOVIE_FILE);
+    }
+
+    private void saveMoviesToRepo(List<Movie> movies) {
         movies.forEach(movieRepository::save);
+    }
 
+    private void printMovieList() {
         logger.info("List of movies:");
         movieRepository.findAll().forEach(System.out::println);
     }
