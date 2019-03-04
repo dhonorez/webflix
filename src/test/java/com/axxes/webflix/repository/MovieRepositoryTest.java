@@ -18,7 +18,7 @@ public class MovieRepositoryTest {
 
     @Test
     public void testSave() {
-        Movie movie = new Movie();
+        Movie movie = new Movie(1, "12345", "Into the Wild", 2007, 81, new String[]{"Adventure", "Biography", "Drama"});
 
         movie = movieRepository.save(movie);
 

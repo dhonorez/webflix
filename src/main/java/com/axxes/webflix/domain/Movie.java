@@ -1,15 +1,31 @@
 package com.axxes.webflix.domain;
 
+import javax.persistence.*;
 import java.util.Arrays;
 
+@Entity
 public class Movie {
 
+    @Id
     private int id;
+
+    @Column
     private String imdb;
+
+    @Column
     private String name;
+
+    @Column
     private int year;
+
+    @Column
     private int score;
+
+    @ElementCollection
+    @OrderColumn
     private String[] tags;
+
+    public Movie(){}
 
     public Movie(int id, String imdb, String name, int year, int score, String[] tags) {
         this.id = id;
