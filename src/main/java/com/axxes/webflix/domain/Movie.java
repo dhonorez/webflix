@@ -1,28 +1,30 @@
 package com.axxes.webflix.domain;
 
-import javax.persistence.*;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
+
 import java.util.Arrays;
 
-@Entity
+@Document
 public class Movie {
 
     @Id
     private int id;
 
-    @Column
+    @Field
     private String imdb;
 
-    @Column
+    @Field
     private String name;
 
-    @Column
+    @Field
     private int year;
 
-    @Column
+    @Field
     private int score;
 
-    @ElementCollection
-    @OrderColumn
+    @Field
     private String[] tags;
 
     public Movie(){}

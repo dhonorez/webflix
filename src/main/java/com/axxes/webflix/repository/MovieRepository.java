@@ -1,11 +1,11 @@
 package com.axxes.webflix.repository;
 
 import com.axxes.webflix.domain.Movie;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.List;
 
-public interface MovieRepository extends JpaRepository<Movie, Integer> {
+public interface MovieRepository extends MongoRepository<Movie, Integer> {
 
     Movie findById(int id);
 
